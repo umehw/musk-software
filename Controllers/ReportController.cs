@@ -8,21 +8,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Software_Engineering_Assingment.Controllers
 {
-    public class ReportController : Controller
+  public class ReportController : Controller
+  {
+    // GET: /<controller>/
+    //public IActionResult Index()
+    //{
+    //    return View();
+    //}
+
+    // 
+    // GET: /Report/
+
+    public string Index()
     {
-        // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        // 
-        // GET: /Report/
-
-        public string Index()
-        {
-            return "This is my default action...";
-        }
-
+      return "This is my default action...";
     }
+  }
 }

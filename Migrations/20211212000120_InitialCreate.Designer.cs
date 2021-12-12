@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Software_Engineering_Assingment.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20211210224836_SiteTableCreate")]
-    partial class SiteTableCreate
+    [Migration("20211212000120_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,21 +19,22 @@ namespace Software_Engineering_Assingment.Migrations
 
             modelBuilder.Entity("Software_Engineering_Assingment.Models.Site", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SiteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("SiteId");
 
                     b.ToTable("Site");
                 });
 
             modelBuilder.Entity("Software_Engineering_Assingment.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -41,21 +42,25 @@ namespace Software_Engineering_Assingment.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Role")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("User");
                 });

@@ -6,7 +6,8 @@ namespace Software_Engineering_Assingment.Models
   public class Site
   {
     [Key]
-    public int Id { get; set; }
+    public int SiteId { get; set; }
+    [Required]
     public string Name { get; set; }
   }
 }

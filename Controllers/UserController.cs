@@ -33,7 +33,7 @@ namespace Software_Engineering_Assingment.Controllers
       }
 
       var user = await _context.User
-          .FirstOrDefaultAsync(m => m.Id == id);
+          .FirstOrDefaultAsync(m => m.UserId == id);
       if (user == null)
       {
         return NotFound();
@@ -87,7 +87,7 @@ namespace Software_Engineering_Assingment.Controllers
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Password,FirstName,LastName,CreatedAt,Role")] User user)
     {
-      if (id != user.Id)
+      if (id != user.UserId)
       {
         return NotFound();
       }
@@ -101,7 +101,7 @@ namespace Software_Engineering_Assingment.Controllers
         }
         catch (DbUpdateConcurrencyException)
         {
-          if (!UserExists(user.Id))
+          if (!UserExists(user.UserId))
           {
             return NotFound();
           }
@@ -124,7 +124,7 @@ namespace Software_Engineering_Assingment.Controllers
       }
 
       var user = await _context.User
-          .FirstOrDefaultAsync(m => m.Id == id);
+          .FirstOrDefaultAsync(m => m.UserId == id);
       if (user == null)
       {
         return NotFound();
@@ -146,7 +146,7 @@ namespace Software_Engineering_Assingment.Controllers
 
     private bool UserExists(int id)
     {
-      return _context.User.Any(e => e.Id == id);
+      return _context.User.Any(e => e.UserId == id);
     }
   }
 }
