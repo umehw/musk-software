@@ -20,5 +20,6 @@ namespace Software_Engineering_Assingment.Models
     public DateTime CreatedAt { get; set; }
     [Required]
     public RoleType Role { get; set; }
+    public Report Report { get; set; }
   }
 }

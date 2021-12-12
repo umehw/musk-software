@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Software_Engineering_Assingment.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20211212005633_ReportRelatedTables")]
-    partial class ReportRelatedTables
+    [Migration("20211212020919_AddReportRelatedTables")]
+    partial class AddReportRelatedTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -483,32 +483,9 @@ namespace Software_Engineering_Assingment.Migrations
 
             modelBuilder.Entity("Software_Engineering_Assingment.Models.Report", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ReportId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("AwarenessFireExitsId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("COSHHId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CertificationDailyChecksheetsId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CertificationTrainingInsuranceId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("CompletedById")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ConfinedSpaceWorkId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
@@ -516,111 +493,37 @@ namespace Software_Engineering_Assingment.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ElectricalWorkId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FireExitsId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("HotWorkId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("InspectorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("IsolationId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("JobDescription")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LiftingOperationsId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ManualHandlingId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherContractorsId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PPEId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaperworkId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PowerToolsId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ProductContaminationId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("SiteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("SiteSetUpAppearanceId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Supervisor")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ToolsUsedFitForPurposeId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("VehicleConditionId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("VehicleLogSheetUpToDateId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("VehicleServiceRecordsId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("VoltageDetectorCheckedId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("WasteManagementId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("WorkArea")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("WorkAtHeightId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.HasKey("ReportId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("SiteId")
+                        .IsUnique();
 
-                    b.HasIndex("SiteId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Report");
                 });
@@ -635,12 +538,7 @@ namespace Software_Engineering_Assingment.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ReportId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("SiteId");
-
-                    b.HasIndex("ReportId");
 
                     b.ToTable("Site");
                 });
@@ -728,15 +626,10 @@ namespace Software_Engineering_Assingment.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ReportId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Role")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("ReportId");
 
                     b.ToTable("User");
                 });
@@ -1094,25 +987,20 @@ namespace Software_Engineering_Assingment.Migrations
             modelBuilder.Entity("Software_Engineering_Assingment.Models.Report", b =>
                 {
                     b.HasOne("Software_Engineering_Assingment.Models.Site", "Site")
-                        .WithMany()
-                        .HasForeignKey("SiteId")
+                        .WithOne("Report")
+                        .HasForeignKey("Software_Engineering_Assingment.Models.Report", "SiteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Software_Engineering_Assingment.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithOne("Report")
+                        .HasForeignKey("Software_Engineering_Assingment.Models.Report", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Site");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Software_Engineering_Assingment.Models.Site", b =>
-                {
-                    b.HasOne("Software_Engineering_Assingment.Models.Report", null)
-                        .WithMany("Sites")
-                        .HasForeignKey("ReportId");
                 });
 
             modelBuilder.Entity("Software_Engineering_Assingment.Models.SiteSetUpAppearance", b =>
@@ -1135,13 +1023,6 @@ namespace Software_Engineering_Assingment.Migrations
                         .IsRequired();
 
                     b.Navigation("Report");
-                });
-
-            modelBuilder.Entity("Software_Engineering_Assingment.Models.User", b =>
-                {
-                    b.HasOne("Software_Engineering_Assingment.Models.Report", null)
-                        .WithMany("Users")
-                        .HasForeignKey("ReportId");
                 });
 
             modelBuilder.Entity("Software_Engineering_Assingment.Models.VehicleCondition", b =>
@@ -1244,13 +1125,9 @@ namespace Software_Engineering_Assingment.Migrations
 
                     b.Navigation("ProductContamination");
 
-                    b.Navigation("Sites");
-
                     b.Navigation("SiteSetUpAppearance");
 
                     b.Navigation("ToolsUsedFitForPurpose");
-
-                    b.Navigation("Users");
 
                     b.Navigation("VehicleCondition");
 
@@ -1263,6 +1140,16 @@ namespace Software_Engineering_Assingment.Migrations
                     b.Navigation("WasteManagement");
 
                     b.Navigation("WorkAtHeight");
+                });
+
+            modelBuilder.Entity("Software_Engineering_Assingment.Models.Site", b =>
+                {
+                    b.Navigation("Report");
+                });
+
+            modelBuilder.Entity("Software_Engineering_Assingment.Models.User", b =>
+                {
+                    b.Navigation("Report");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,5 +9,7 @@ namespace Software_Engineering_Assingment.Models
     public int SiteId { get; set; }
     [Required]
     public string Name { get; set; }
+    public Report Report { get; set; }
+
   }
 }

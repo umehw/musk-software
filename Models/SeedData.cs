@@ -84,4 +84,4 @@ namespace Software_Engineering_Assingment.Models
 }
 
 // gen command
-// dotnet-aspnet-codegenerator controller -name SiteController -m Site -dc DBContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+// dotnet-aspnet-codegenerator controller -name ReportController -m Report -dc DBContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite

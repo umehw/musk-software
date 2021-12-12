@@ -3,66 +3,29 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Software_Engineering_Assingment.Migrations
 {
-    public partial class ReportRelatedTables : Migration
+    public partial class AddReportRelatedTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "ReportId",
-                table: "User",
-                type: "INTEGER",
-                nullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "ReportId",
-                table: "Site",
-                type: "INTEGER",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "Report",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    ReportId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     SiteId = table.Column<int>(type: "INTEGER", nullable: false),
                     WorkArea = table.Column<string>(type: "TEXT", nullable: false),
                     Supervisor = table.Column<string>(type: "TEXT", nullable: false),
                     JobDescription = table.Column<string>(type: "TEXT", nullable: false),
-                    CompletedById = table.Column<int>(type: "INTEGER", nullable: false),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     InspectorId = table.Column<int>(type: "INTEGER", nullable: false),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Type = table.Column<string>(type: "TEXT", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: true),
-                    AwarenessFireExitsId = table.Column<string>(type: "TEXT", nullable: false),
-                    CertificationDailyChecksheetsId = table.Column<string>(type: "TEXT", nullable: false),
-                    CertificationTrainingInsuranceId = table.Column<string>(type: "TEXT", nullable: false),
-                    ConfinedSpaceWorkId = table.Column<string>(type: "TEXT", nullable: false),
-                    COSHHId = table.Column<string>(type: "TEXT", nullable: false),
-                    ElectricalWorkId = table.Column<string>(type: "TEXT", nullable: false),
-                    FireExitsId = table.Column<string>(type: "TEXT", nullable: false),
-                    HotWorkId = table.Column<string>(type: "TEXT", nullable: false),
-                    IsolationId = table.Column<string>(type: "TEXT", nullable: false),
-                    LiftingOperationsId = table.Column<string>(type: "TEXT", nullable: false),
-                    ManualHandlingId = table.Column<string>(type: "TEXT", nullable: false),
-                    OtherContractorsId = table.Column<string>(type: "TEXT", nullable: false),
-                    PaperworkId = table.Column<string>(type: "TEXT", nullable: false),
-                    PowerToolsId = table.Column<string>(type: "TEXT", nullable: false),
-                    PPEId = table.Column<string>(type: "TEXT", nullable: false),
-                    ProductContaminationId = table.Column<string>(type: "TEXT", nullable: false),
-                    SiteSetUpAppearanceId = table.Column<string>(type: "TEXT", nullable: false),
-                    ToolsUsedFitForPurposeId = table.Column<string>(type: "TEXT", nullable: false),
-                    VehicleConditionId = table.Column<string>(type: "TEXT", nullable: false),
-                    VehicleLogSheetUpToDateId = table.Column<string>(type: "TEXT", nullable: false),
-                    VehicleServiceRecordsId = table.Column<string>(type: "TEXT", nullable: false),
-                    VoltageDetectorCheckedId = table.Column<string>(type: "TEXT", nullable: false),
-                    WasteManagementId = table.Column<string>(type: "TEXT", nullable: false),
-                    WorkAtHeightId = table.Column<string>(type: "TEXT", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Report", x => x.Id);
+                    table.PrimaryKey("PK_Report", x => x.ReportId);
                     table.ForeignKey(
                         name: "FK_Report_Site_SiteId",
                         column: x => x.SiteId,
@@ -74,7 +37,7 @@ namespace Software_Engineering_Assingment.Migrations
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,7 +59,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_AwarenessFireExits_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -119,7 +82,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_CertificationDailyChecksheets_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -142,7 +105,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_CertificationTrainingInsurance_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -165,7 +128,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_ConfinedSpaceWork_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -188,7 +151,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_COSHH_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -211,7 +174,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_ElectricalWork_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -234,7 +197,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_FireExits_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -257,7 +220,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_HotWork_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -280,7 +243,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_Isolation_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -303,7 +266,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_LiftingOperations_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -326,7 +289,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_ManualHandling_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -349,7 +312,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_OtherContractors_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -372,7 +335,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_Paperwork_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -395,7 +358,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_PowerTools_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -418,7 +381,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_PPE_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -441,7 +404,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_ProductContamination_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -464,7 +427,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_SiteSetUpAppearance_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -487,7 +450,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_ToolsUsedFitForPurpose_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -510,7 +473,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_VehicleCondition_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -533,7 +496,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_VehicleLogSheetUpToDate_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -556,7 +519,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_VehicleServiceRecords_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -579,7 +542,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_VoltageDetectorChecked_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -602,7 +565,7 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_WasteManagement_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -625,19 +588,9 @@ namespace Software_Engineering_Assingment.Migrations
                         name: "FK_WorkAtHeight_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
-                        principalColumn: "Id",
+                        principalColumn: "ReportId",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_ReportId",
-                table: "User",
-                column: "ReportId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Site_ReportId",
-                table: "Site",
-                column: "ReportId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AwarenessFireExits_ReportId",
@@ -738,12 +691,14 @@ namespace Software_Engineering_Assingment.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Report_SiteId",
                 table: "Report",
-                column: "SiteId");
+                column: "SiteId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Report_UserId",
                 table: "Report",
-                column: "UserId");
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_SiteSetUpAppearance_ReportId",
@@ -792,34 +747,10 @@ namespace Software_Engineering_Assingment.Migrations
                 table: "WorkAtHeight",
                 column: "ReportId",
                 unique: true);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Site_Report_ReportId",
-                table: "Site",
-                column: "ReportId",
-                principalTable: "Report",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_User_Report_ReportId",
-                table: "User",
-                column: "ReportId",
-                principalTable: "Report",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Site_Report_ReportId",
-                table: "Site");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_User_Report_ReportId",
-                table: "User");
-
             migrationBuilder.DropTable(
                 name: "AwarenessFireExits");
 
@@ -894,22 +825,6 @@ namespace Software_Engineering_Assingment.Migrations
 
             migrationBuilder.DropTable(
                 name: "Report");
-
-            migrationBuilder.DropIndex(
-                name: "IX_User_ReportId",
-                table: "User");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Site_ReportId",
-                table: "Site");
-
-            migrationBuilder.DropColumn(
-                name: "ReportId",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "ReportId",
-                table: "Site");
         }
     }
 }
