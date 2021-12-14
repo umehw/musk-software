@@ -1,0 +1,147 @@
+@model Software_Engineering_Assingment.Models.Report
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section class="content-header">
+   <h1>Create</h1>
+    <h4>Report</h4>
+</section>
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="SiteId" class="control-label"></label>
+                    <select asp-for="SiteId" class="form-control" asp-items="ViewBag.SiteId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WorkArea" class="control-label"></label>
+                    <input asp-for="WorkArea" class="form-control" />
+                    <span asp-validation-for="WorkArea" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Supervisor" class="control-label"></label>
+                    <input asp-for="Supervisor" class="form-control" />
+                    <span asp-validation-for="Supervisor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="JobDescription" class="control-label"></label>
+                    <input asp-for="JobDescription" class="form-control" />
+                    <span asp-validation-for="JobDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InspectorId" class="control-label"></label>
+                    <input asp-for="InspectorId" class="form-control" />
+                    <span asp-validation-for="InspectorId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Type" class="control-label"></label>
+                    <input asp-for="Type" class="form-control" />
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreatedAt" class="control-label"></label>
+                    <input asp-for="CreatedAt" class="form-control" />
+                    <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IsHighRiskActivity" class="control-label"></label>
+                    <input asp-for="IsHighRiskActivity" type="checkbox"
+                        name="selectedCourses"
+                        value="IsHighRiskActivity"
+                    />
+                    <span asp-validation-for="IsHighRiskActivity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <table>
+                        <thead>
+                            <th></th>
+                            <th>Interventions</th>
+                            <th>Comment</th>
+                            <th>Completed</th>
+                            <th>Action Taken</th>
+                        </thead>
+                        <tbody>
+                            @{
+                                List<Tuple<string, List<Software_Engineering_Assingment.ViewModels.ReportElement>>> elementTuples = ViewBag.ElementTuples;
+
+                                if(elementTuples == null) {
+                                    return;
+                                } 
+
+                                foreach (var elementTuple in elementTuples)
+                                {
+                                    @:
+                                        <tr>
+                                            <td colspan="all">
+                                                @elementTuple.Item1
+                                            </td>
+                                        </tr>
+                                        var formSection = elementTuple.Item2;
+                                        foreach (var element in formSection) {
+                                            @:<tr>
+                                                <td>@element.ElementSectionName</td>
+                                                <td>
+                                                    <input asp-for="@element.Interventions" class="form-control" />
+                                                    <span asp-validation-for="@element.Interventions" class="text-danger"></span>  
+                                                </td>
+                                                <td>
+                                                    <input asp-for="@element.Comment" class="form-control" />
+                                                    <span asp-validation-for="@element.Comment" class="text-danger"></span>  
+
+                                                </td>
+                                                <td>
+                                                    <input asp-for="@element.Completed" class="form-control" />
+                                                    <span asp-validation-for="@element.Completed" class="text-danger"></span>  
+
+                                                </td>
+                                                <td>
+                                                    <input asp-for="@element.ActionTaken" class="form-control" />
+                                                    <span asp-validation-for="@element.ActionTaken" class="text-danger"></span>  
+                                                </td>
+                                            @:</tr>
+                                        }
+                                    @:
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="AdditionalComments" class="control-label"></label>
+                    <textarea asp-for="AdditionalComments" type="checkbox"
+                        name="selectedCourses"
+                        value="AdditionalComments"
+                    ></textarea>
+                    <span asp-validation-for="AdditionalComments" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</section>
