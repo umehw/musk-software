@@ -11,7 +11,7 @@ namespace Software_Engineering_Assingment.Models
     public int ElementSectionId { get; set; }
     public int ReportId { get; set; }
     [Required]
-    public string Interventions { get; set; }
+    public int Interventions { get; set; }
     public string Comment { get; set; }
     public string Completed { get; set; }
     public string ActionTaken { get; set; }

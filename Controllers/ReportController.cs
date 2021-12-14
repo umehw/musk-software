@@ -73,7 +73,7 @@ namespace Software_Engineering_Assingment.Controllers
             ElementHeaderId = elementHeader.ElementHeaderId,
             ElementSectionId = elementSection.ElementHeaderId,
             ElementSectionName = elementSection.Name,
-            Interventions = null,
+            Interventions = 0,
             Comment = null,
             Completed = null
           });
@@ -91,7 +91,7 @@ namespace Software_Engineering_Assingment.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("ReportId,SiteId,WorkArea,Supervisor,JobDescription,UserId,InspectorId,Date,Type,CreatedAt,Elements")] Report report)
+    public async Task<IActionResult> Create([Bind("ReportId,SiteId,WorkArea,Supervisor,JobDescription,UserId,InspectorId,Date,Type,CreatedAt")] Report report)
     {
       if (ModelState.IsValid)
       {
